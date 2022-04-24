@@ -1,0 +1,886 @@
+Alice and Bob each created one problem for HackerRank. A reviewer rates the two challenges, awarding points on a scale from 1 to 100 for three categories: problem clarity, originality, and difficulty.
+
+The rating for Alice's challenge is the triplet a = (a[0], a[1], a[2]), and the rating for Bob's challenge is the triplet b = (b[0], b[1], b[2]).
+
+The task is to find their comparison points by comparing a[0] with b[0], a[1] with b[1], and a[2] with b[2].
+
+If a[i] > b[i], then Alice is awarded 1 point.
+If a[i] < b[i], then Bob is awarded 1 point.
+If a[i] = b[i], then neither person receives a point.
+Comparison points is the total points a person earned.
+
+Given a and b, determine their respective comparison points.
+
+Example
+
+a = [1, 2, 3]
+b = [3, 2, 1]
+For elements *0*, Bob is awarded a point because a[0] .
+For the equal elements a[1] and b[1], no points are earned.
+Finally, for elements 2, a[2] > b[2] so Alice receives a point.
+The return array is [1, 1] with Alice's score first and Bob's second.
+
+Function Description
+
+Complete the function compareTriplets in the editor below.
+
+compareTriplets has the following parameter(s):
+
+int a[3]: Alice's challenge rating
+int b[3]: Bob's challenge rating
+Return
+
+int[2]: Alice's score is in the first position, and Bob's score is in the second.
+Input Format
+
+The first line contains 3 space-separated integers, a[0], a[1], and a[2], the respective values in triplet a.
+The second line contains 3 space-separated integers, b[0], b[1], and b[2], the respective values in triplet b.
+
+Constraints
+
+1 ≤ a[i] ≤ 100
+1 ≤ b[i] ≤ 100
+Sample Input 0
+
+5 6 7
+3 6 10
+Sample Output 0
+
+1 1
+Explanation 0
+
+In this example:
+
+Now, let's compare each individual score:
+
+, so Alice receives  point.
+, so nobody receives a point.
+, so Bob receives  point.
+Alice's comparison score is , and Bob's comparison score is . Thus, we return the array .
+
+Sample Input 1
+
+17 28 30
+99 16 8
+Sample Output 1
+
+2 1
+Explanation 1
+
+Comparing the  elements,  so Bob receives a point.
+Comparing the  and  elements,  and  so Alice receives two points.
+The return array is .
+
+
+
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'compareTriplets' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY a
+     *  2. INTEGER_ARRAY b
+     */
+
+    public static List<Integer> compareTriplets(List<Integer> a, List<Integer> b) {
+    // Write your code here
+
+        int alice=0,bob=0;
+        ///int [] coordinats=new int[2];
+        List<Integer> coordinats=new ArrayList<>();
+        
+        int c=0;
+        for(int i=0;i<a.size();i++){
+            if(a.get(i)==b.get(i)){
+                c++;
+            }
+            else if (a.get(i)>b.get(i)){
+                alice++;
+            //    coordinats[0]++;
+            }
+            else{
+                bob++;
+            //    coordinats[1]++;
+            }
+        }
+        coordinats.add(0,alice);
+        coordinats.add(1,bob);
+        return coordinats;
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] aTemp = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        List<Integer> a = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            int aItem = Integer.parseInt(aTemp[i]);
+            a.add(aItem);
+        }
+
+        String[] bTemp = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        List<Integer> b = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            int bItem = Integer.parseInt(bTemp[i]);
+            b.add(bItem);
+        }
+
+        List<Integer> result = Result.compareTriplets(a, b);
+
+        for (int i = 0; i < result.size(); i++) {
+            bufferedWriter.write(String.valueOf(result.get(i)));
+
+            if (i != result.size() - 1) {
+                bufferedWriter.write(" ");
+            }
+        }
+
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
+
+
+=======================================================================================================================================
+
+In this challenge, you are required to calculate and print the sum of the elements in an array, keeping in mind that some of those integers may be quite large.
+
+Function Description
+
+Complete the aVeryBigSum function in the editor below. It must return the sum of all array elements.
+
+aVeryBigSum has the following parameter(s):
+
+int ar[n]: an array of integers .
+Return
+
+long: the sum of all array elements
+Input Format
+
+The first line of the input consists of an integer .
+The next line contains  space-separated integers contained in the array.
+
+Output Format
+
+Return the integer sum of the elements in the array.
+
+Constraints
+
+
+Sample Input
+
+5
+1000000001 1000000002 1000000003 1000000004 1000000005
+Output
+
+5000000015
+Note:
+
+The range of the 32-bit integer is .
+When we add several integer values, the resulting sum might exceed the above range. You might need to use long int C/C++/Java to store such sums.
+
+
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'aVeryBigSum' function below.
+     *
+     * The function is expected to return a LONG_INTEGER.
+     * The function accepts LONG_INTEGER_ARRAY ar as parameter.
+     */
+
+    public static long aVeryBigSum(List<Long> ar) {
+    // Write your code here
+    
+    long sum=0;
+        for(int i=0;i<ar.size();i++){
+            sum=sum+ar.get(i);
+        }
+        return sum;
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int arCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        String[] arTemp = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        List<Long> ar = new ArrayList<>();
+
+        for (int i = 0; i < arCount; i++) {
+            long arItem = Long.parseLong(arTemp[i]);
+            ar.add(arItem);
+        }
+
+        long result = Result.aVeryBigSum(ar);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
+
+=================================================================================================================
+
+
+Given a square matrix, calculate the absolute difference between the sums of its diagonals.
+
+For example, the square matrix  is shown below:
+
+1 2 3
+4 5 6
+9 8 9  
+The left-to-right diagonal = . The right to left diagonal = . Their absolute difference is .
+
+Function description
+
+Complete the  function in the editor below.
+
+diagonalDifference takes the following parameter:
+
+int arr[n][m]: an array of integers
+Return
+
+int: the absolute diagonal difference
+Input Format
+
+The first line contains a single integer, , the number of rows and columns in the square matrix .
+Each of the next  lines describes a row, , and consists of  space-separated integers .
+
+Constraints
+
+Output Format
+
+Return the absolute difference between the sums of the matrix's two diagonals as a single integer.
+
+Sample Input
+
+3
+11 2 4
+4 5 6
+10 8 -12
+Sample Output
+
+15
+Explanation
+
+The primary diagonal is:
+
+11
+   5
+     -12
+Sum across the primary diagonal: 11 + 5 - 12 = 4
+
+The secondary diagonal is:
+
+     4
+   5
+10
+Sum across the secondary diagonal: 4 + 5 + 10 = 19
+Difference: |4 - 19| = 15
+
+Note: |x| is the absolute value of x
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'diagonalDifference' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts 2D_INTEGER_ARRAY arr as parameter.
+     */
+
+    public static int diagonalDifference(List<List<Integer>> arr) {
+    // Write your code here
+        int sum1=0,sum2=0;
+        for(int i=0;i<arr.size();i++){
+            sum1=sum1+ arr.get(i).get(i);
+        }
+        int m=arr.size();
+       for (int i = 0; i < m; i++) {
+            for (int j = 0; j < m; j++) {
+ 
+                // Condition for secondary diagonal
+                if ((i + j) == (m - 1)) {
+                    sum2=sum2+arr.get(i).get(j);
+                }
+            }
+        }
+       // System.out.println(sum2);
+       if(sum1>=sum2){
+           return sum1-sum2;
+       }
+       else{
+          return sum2-sum1;
+          }
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int n = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<List<Integer>> arr = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            String[] arrRowTempItems = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+            List<Integer> arrRowItems = new ArrayList<>();
+
+            for (int j = 0; j < n; j++) {
+                int arrItem = Integer.parseInt(arrRowTempItems[j]);
+                arrRowItems.add(arrItem);
+            }
+
+            arr.add(arrRowItems);
+        }
+
+        int result = Result.diagonalDifference(arr);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
+
+
+
+
+=======================================================================================================================================
+Given an array of integers, calculate the ratios of its elements that are positive, negative, and zero. Print the decimal value of each fraction on a new line with  places after the decimal.
+
+Note: This challenge introduces precision problems. The test cases are scaled to six decimal places, though answers with absolute error of up to  are acceptable.
+
+Example
+
+There are  elements, two positive, two negative and one zero. Their ratios are ,  and . Results are printed as:
+
+0.400000
+0.400000
+0.200000
+Function Description
+
+Complete the plusMinus function in the editor below.
+
+plusMinus has the following parameter(s):
+
+int arr[n]: an array of integers
+Print
+Print the ratios of positive, negative and zero values in the array. Each value should be printed on a separate line with  digits after the decimal. The function should not return a value.
+
+Input Format
+
+The first line contains an integer, , the size of the array.
+The second line contains  space-separated integers that describe .
+
+Constraints
+
+
+
+Output Format
+
+Print the following  lines, each to  decimals:
+
+proportion of positive values
+proportion of negative values
+proportion of zeros
+Sample Input
+
+STDIN           Function
+-----           --------
+6               arr[] size n = 6
+-4 3 -9 0 4 1   arr = [-4, 3, -9, 0, 4, 1]
+Sample Output
+
+0.500000
+0.333333
+0.166667
+Explanation
+
+There are  positive numbers,  negative numbers, and  zero in the array.
+The proportions of occurrence are positive: , negative:  and zeros: .
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'plusMinus' function below.
+     *
+     * The function accepts INTEGER_ARRAY arr as parameter.
+     */
+
+    public static void plusMinus(List<Integer> arr) {
+    // Write your code here
+    
+    float fra;
+    float po=0,zero=0,ne=0;
+    for(int i=0;i<arr.size();i++){
+        if(arr.get(i)>0){
+            po++;
+        }
+        else if(arr.get(i)<0){
+            ne++;
+        }
+        else{zero++;}
+        
+    }
+    System.out.println(po/arr.size());
+    System.out.println(ne/arr.size());
+    System.out.println(zero/arr.size());
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(bufferedReader.readLine().trim());
+
+        String[] arrTemp = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        List<Integer> arr = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            int arrItem = Integer.parseInt(arrTemp[i]);
+            arr.add(arrItem);
+        }
+
+        Result.plusMinus(arr);
+
+        bufferedReader.close();
+    }
+}
+================================================================================================================================
+Staircase detail
+
+This is a staircase of size :
+
+   #
+  ##
+ ###
+####
+Its base and height are both equal to . It is drawn using # symbols and spaces. The last line is not preceded by any spaces.
+
+Write a program that prints a staircase of size .
+
+Function Description
+
+Complete the staircase function in the editor below.
+
+staircase has the following parameter(s):
+
+int n: an integer
+Print
+
+Print a staircase as described above.
+
+Input Format
+
+A single integer, , denoting the size of the staircase.
+
+Constraints
+
+ .
+
+Output Format
+
+Print a staircase of size  using # symbols and spaces.
+
+Note: The last line must have  spaces in it.
+
+Sample Input
+
+6 
+Sample Output
+
+     #
+    ##
+   ###
+  ####
+ #####
+######
+Explanation
+
+The staircase is right-aligned, composed of # symbols and spaces, and has a height and width of .
+
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'staircase' function below.
+     *
+     * The function accepts INTEGER n as parameter.
+     */
+
+    public static void staircase(int n) {
+    // Write your code here
+    int i,j;
+    for( i=0; i<n; i++){
+        
+     for ( j=n-i; j>1; j--)
+            {
+                
+                System.out.print(" ");
+            }
+  
+           
+            for (j=0; j<=i; j++ )
+            {
+               
+                System.out.print("#");
+            }
+  
+            // ending line after each row
+            System.out.println();
+    }
+
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(bufferedReader.readLine().trim());
+
+        Result.staircase(n);
+
+        bufferedReader.close();
+    }
+}
+===============================================================================================
+
+Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then print the respective minimum and maximum values as a single line of two space-separated long integers.
+
+Example
+
+The minimum sum is  and the maximum sum is . The function prints
+
+16 24
+Function Description
+
+Complete the miniMaxSum function in the editor below.
+
+miniMaxSum has the following parameter(s):
+
+arr: an array of  integers
+Print
+
+Print two space-separated integers on one line: the minimum sum and the maximum sum of  of  elements.
+
+Input Format
+
+A single line of five space-separated integers.
+
+Constraints
+
+
+Output Format
+
+Print two space-separated long integers denoting the respective minimum and maximum values that can be calculated by summing exactly four of the five integers. (The output can be greater than a 32 bit integer.)
+
+Sample Input
+
+1 2 3 4 5
+Sample Output
+
+10 14
+Explanation
+
+The numbers are , , , , and . Calculate the following sums using four of the five integers:
+
+Sum everything except , the sum is .
+Sum everything except , the sum is .
+Sum everything except , the sum is .
+Sum everything except , the sum is .
+Sum everything except , the sum is .
+Hints: Beware of integer overflow! Use 64-bit Integer.
+
+Need help to get started? Try the Solve Me First problem
+
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'miniMaxSum' function below.
+     *
+     * The function accepts INTEGER_ARRAY arr as parameter.
+     */
+
+    public static void miniMaxSum(List<Long> arr) {
+    // Write your code here
+    
+    long sum1=0,sum2=0;
+    Collections.sort(arr);
+    
+    for(int m=1;m<arr.size();m++){
+        sum1=sum1+arr.get(m);
+    }
+    for(int l=0;l<arr.size()-1;l++){
+        sum2=sum2+arr.get(l);
+    }
+        
+        System.out.print(sum2);
+        System.out.print(" ");
+        System.out.print(sum1);
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] arrTemp = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        List<Long> arr = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            long arrItem = Integer.parseInt(arrTemp[i]);
+            arr.add(arrItem);
+        }
+
+        Result.miniMaxSum(arr);
+
+        bufferedReader.close();
+    }
+}
+==================================================================================================
+
+You are in charge of the cake for a child's birthday. You have decided the cake will have one candle for each year of their total age. They will only be able to blow out the tallest of the candles. Count how many candles are tallest.
+
+Example
+
+
+The maximum height candles are  units high. There are  of them, so return .
+
+Function Description
+
+Complete the function birthdayCakeCandles in the editor below.
+
+birthdayCakeCandles has the following parameter(s):
+
+int candles[n]: the candle heights
+Returns
+
+int: the number of candles that are tallest
+Input Format
+
+The first line contains a single integer, , the size of .
+The second line contains  space-separated integers, where each integer  describes the height of .
+
+Constraints
+
+Sample Input 0
+
+4
+3 2 1 3
+Sample Output 0
+
+2
+Explanation 0
+
+Candle heights are . The tallest candles are  units, and there are  of them.import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'birthdayCakeCandles' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts INTEGER_ARRAY candles as parameter.
+     */
+
+    public static int birthdayCakeCandles(List<Integer> candles) {
+    // Write your code here 
+    int max=1;
+    for(int i=0;i<candles.size();i++){
+        if(max<candles.get(i)){
+            max=candles.get(i);
+        }
+    }
+    int count =0;
+    for(int k=0;k<candles.size();k++){
+        if(max==candles.get(k)){
+            count++;
+        }
+    }
+    return count;
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int candlesCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        String[] candlesTemp = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        List<Integer> candles = new ArrayList<>();
+
+        for (int i = 0; i < candlesCount; i++) {
+            int candlesItem = Integer.parseInt(candlesTemp[i]);
+            candles.add(candlesItem);
+        }
+
+        int result = Result.birthdayCakeCandles(candles);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
+==================================================================================
+Given a time in -hour AM/PM format, convert it to military (24-hour) time.
+
+Note: - 12:00:00AM on a 12-hour clock is 00:00:00 on a 24-hour clock.
+- 12:00:00PM on a 12-hour clock is 12:00:00 on a 24-hour clock.
+
+Example
+
+
+Return '12:01:00'.
+
+
+Return '00:01:00'.
+
+Function Description
+
+Complete the timeConversion function in the editor below. It should return a new string representing the input time in 24 hour format.
+
+timeConversion has the following parameter(s):
+
+string s: a time in  hour format
+Returns
+
+string: the time in  hour format
+Input Format
+
+A single string  that represents a time in -hour clock format (i.e.:  or ).
+
+Constraints
+
+All input times are valid
+Sample Input 0
+
+07:05:45PM
+Sample Output 0
+
+19:05:45
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+       public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine(); //07:05:45PM
+        DateFormat inFormat = new SimpleDateFormat( "hh:mm:ssaa");
+        DateFormat outFormat = new SimpleDateFormat( "HH:mm:ss");
+
+        Date date = null;
+        try {
+            date = inFormat.parse(s); 
+        }catch (ParseException e ){
+            e.printStackTrace();
+        }
+        if( date != null ){
+            String myDate = outFormat.format(date);
+            System.out.println(myDate);
+        }
+    }
+
+}
+
+
+==========================================================================================================================================================
